@@ -8,7 +8,7 @@ module.exports = (fileContent) => {
     const filePath = path.resolve(__dirname, 'tmp', `${rand}`)
     fs.writeFileSync(filePath, fileContent)
     const command = process.platform === 'win32' ? '"C:\\Program Files (x86)\\GnuWin32\\bin\\file" −-mime-type' : 'file -b --mime-type'
-    exec(`file -b --mime-type ${filePath}`, (err, result) => {
+    exec(`${command} ${filePath}`, (err, result) => {
       if (err) reject(err)
       fs.unlinkSync(filePath)
       resolve(result)
